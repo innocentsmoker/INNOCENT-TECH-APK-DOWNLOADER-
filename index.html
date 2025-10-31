@@ -33,7 +33,7 @@
             position: relative;
         }
 
-        /* Lightning Background */
+        /* Enhanced Lightning Background */
         .lightning-bg {
             position: fixed;
             top: 0;
@@ -41,7 +41,6 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            opacity: 0.4;
             background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #16213e 100%);
             overflow: hidden;
         }
@@ -55,20 +54,20 @@
             background: linear-gradient(90deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
             opacity: 0;
             transform: skewX(-20deg);
-            animation: lightningFlash 8s infinite;
+            animation: lightningFlash 12s infinite;
         }
 
         .lightning:nth-child(2) {
-            animation-delay: 3s;
+            animation-delay: 4s;
         }
 
         .lightning:nth-child(3) {
-            animation-delay: 7s;
+            animation-delay: 8s;
         }
 
         @keyframes lightningFlash {
             0%, 100% { opacity: 0; }
-            1% { opacity: 0.8; }
+            1% { opacity: 0.9; }
             2% { opacity: 0.2; }
             3% { opacity: 0.8; }
             4% { opacity: 0; }
@@ -81,17 +80,40 @@
             top: 0;
             left: 0;
             background-color: rgba(255, 255, 255, 0);
-            animation: thunderRumble 15s infinite;
+            animation: thunderRumble 18s infinite;
         }
 
         @keyframes thunderRumble {
             0%, 100% { background-color: rgba(255, 255, 255, 0); }
-            20% { background-color: rgba(255, 255, 255, 0.02); }
-            21% { background-color: rgba(255, 255, 255, 0); }
-            50% { background-color: rgba(255, 255, 255, 0.03); }
-            51% { background-color: rgba(255, 255, 255, 0); }
-            80% { background-color: rgba(255, 255, 255, 0.01); }
-            81% { background-color: rgba(255, 255, 255, 0); }
+            15% { background-color: rgba(255, 255, 255, 0.03); }
+            16% { background-color: rgba(255, 255, 255, 0); }
+            45% { background-color: rgba(255, 255, 255, 0.04); }
+            46% { background-color: rgba(255, 255, 255, 0); }
+            75% { background-color: rgba(255, 255, 255, 0.02); }
+            76% { background-color: rgba(255, 255, 255, 0); }
+        }
+
+        /* Floating particles effect */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
         }
 
         /* Header Styles */
@@ -237,6 +259,52 @@
             background: #7d3c98;
         }
 
+        /* APK Features Section */
+        .features-section {
+            background: linear-gradient(135deg, rgba(155, 89, 182, 0.9), rgba(142, 68, 173, 0.9));
+            color: var(--light-text);
+            padding: 3rem 0;
+            backdrop-filter: blur(5px);
+            position: relative;
+            z-index: 5;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s;
+            color: var(--dark-text);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--header-bg);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
         /* Featured Apps Section */
         .featured-section {
             background: linear-gradient(135deg, rgba(231, 76, 60, 0.9), rgba(192, 57, 43, 0.9));
@@ -266,16 +334,30 @@
             box-shadow: var(--card-shadow);
             transition: transform 0.3s;
             color: var(--dark-text);
+            position: relative;
         }
 
         .app-card:hover {
             transform: translateY(-5px);
         }
 
-        .app-card img {
+        .app-icon {
             width: 100%;
             height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-icon img {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
             object-fit: cover;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
 
         .app-info {
@@ -291,6 +373,24 @@
             color: #7f8c8d;
             font-size: 0.9rem;
             margin-bottom: 1rem;
+        }
+
+        .app-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+        }
+
+        .app-version {
+            font-weight: 600;
+            color: var(--featured-bg);
+        }
+
+        .app-size {
+            font-weight: 600;
+            color: var(--popular-bg);
         }
 
         .download-btn {
@@ -336,6 +436,7 @@
             box-shadow: var(--card-shadow);
             transition: transform 0.3s;
             color: var(--dark-text);
+            cursor: pointer;
         }
 
         .category-card:hover {
@@ -391,8 +492,9 @@
         .popular-app img {
             width: 60px;
             height: 60px;
-            border-radius: 10px;
+            border-radius: 15px;
             margin-right: 1rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
 
         .popular-app-info {
@@ -409,9 +511,11 @@
             margin-bottom: 0.5rem;
         }
 
-        .app-size {
-            font-weight: 600;
-            color: var(--popular-bg);
+        .app-details-small {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #7f8c8d;
         }
 
         /* Footer */
@@ -548,19 +652,21 @@
 
             .apps-grid,
             .categories-grid,
-            .popular-list {
+            .popular-list,
+            .features-grid {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Lightning Background -->
+    <!-- Enhanced Lightning Background -->
     <div class="lightning-bg">
         <div class="lightning"></div>
         <div class="lightning"></div>
         <div class="lightning"></div>
         <div class="thunder"></div>
+        <div class="particles" id="particles"></div>
     </div>
 
     <!-- Header Section -->
@@ -577,6 +683,7 @@
                 <nav>
                     <ul>
                         <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#features"><i class="fas fa-cogs"></i> Features</a></li>
                         <li><a href="#featured"><i class="fas fa-star"></i> Featured</a></li>
                         <li><a href="#categories"><i class="fas fa-th-large"></i> Categories</a></li>
                         <li><a href="#popular"><i class="fas fa-fire"></i> Popular</a></li>
@@ -598,40 +705,93 @@
         </div>
     </section>
 
+    <!-- APK Features Section -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <h2 class="section-title">Why Use Our APK Downloader?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Safe & Secure</h3>
+                    <p>All APK files are scanned for malware and viruses before being made available for download.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Fast Downloads</h3>
+                    <p>High-speed servers ensure quick downloads without any wait times or speed limits.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-history"></i>
+                    <h3>Version History</h3>
+                    <p>Access previous versions of apps in case you need to downgrade for compatibility.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Device Compatible</h3>
+                    <p>APKs work on all Android devices regardless of manufacturer or Android version.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Featured Apps Section -->
     <section class="featured-section" id="featured">
         <div class="container">
             <h2 class="section-title">Featured Apps</h2>
             <div class="apps-grid">
                 <div class="app-card">
-                    <img src="https://via.placeholder.com/300x150/3498db/ffffff?text=Telegram" alt="Telegram">
+                    <div class="app-icon">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
+                    </div>
                     <div class="app-info">
                         <h3>Telegram</h3>
                         <p>Fast and secure messaging app</p>
+                        <div class="app-details">
+                            <span class="app-version">v9.2.1</span>
+                            <span class="app-size">45.3 MB</span>
+                        </div>
                         <button class="download-btn" data-app="telegram">Download APK</button>
                     </div>
                 </div>
                 <div class="app-card">
-                    <img src="https://via.placeholder.com/300x150/2ecc71/ffffff?text=WhatsApp" alt="WhatsApp">
+                    <div class="app-icon">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+                    </div>
                     <div class="app-info">
                         <h3>WhatsApp</h3>
                         <p>Simple, reliable messaging</p>
+                        <div class="app-details">
+                            <span class="app-version">v2.23.10.76</span>
+                            <span class="app-size">52.1 MB</span>
+                        </div>
                         <button class="download-btn" data-app="whatsapp">Download APK</button>
                     </div>
                 </div>
                 <div class="app-card">
-                    <img src="https://via.placeholder.com/300x150/e74c3c/ffffff?text=Instagram" alt="Instagram">
+                    <div class="app-icon">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+                    </div>
                     <div class="app-info">
                         <h3>Instagram</h3>
                         <p>Photo and video sharing app</p>
+                        <div class="app-details">
+                            <span class="app-version">v289.0.0.18.110</span>
+                            <span class="app-size">67.8 MB</span>
+                        </div>
                         <button class="download-btn" data-app="instagram">Download APK</button>
                     </div>
                 </div>
                 <div class="app-card">
-                    <img src="https://via.placeholder.com/300x150/f39c12/ffffff?text=Spotify" alt="Spotify">
+                    <div class="app-icon">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" alt="Spotify">
+                    </div>
                     <div class="app-info">
                         <h3>Spotify</h3>
                         <p>Music and podcast streaming</p>
+                        <div class="app-details">
+                            <span class="app-version">v8.8.32.516</span>
+                            <span class="app-size">73.5 MB</span>
+                        </div>
                         <button class="download-btn" data-app="spotify">Download APK</button>
                     </div>
                 </div>
@@ -644,35 +804,35 @@
         <div class="container">
             <h2 class="section-title">App Categories</h2>
             <div class="categories-grid">
-                <div class="category-card">
+                <div class="category-card" data-category="games">
                     <i class="fas fa-gamepad"></i>
                     <h3>Games</h3>
                     <p>Action, Adventure, Puzzle & more</p>
                 </div>
-                <div class="category-card">
-                    <i class="fas fa-shopping-cart"></i>
-                    <h3>Shopping</h3>
-                    <p>E-commerce & retail apps</p>
+                <div class="category-card" data-category="social">
+                    <i class="fas fa-users"></i>
+                    <h3>Social</h3>
+                    <p>Social media & communication apps</p>
                 </div>
-                <div class="category-card">
+                <div class="category-card" data-category="entertainment">
                     <i class="fas fa-film"></i>
                     <h3>Entertainment</h3>
                     <p>Movies, TV & streaming apps</p>
                 </div>
-                <div class="category-card">
+                <div class="category-card" data-category="education">
                     <i class="fas fa-graduation-cap"></i>
                     <h3>Education</h3>
                     <p>Learning & educational apps</p>
                 </div>
-                <div class="category-card">
-                    <i class="fas fa-utensils"></i>
-                    <h3>Food & Drink</h3>
-                    <p>Recipes, delivery & more</p>
+                <div class="category-card" data-category="productivity">
+                    <i class="fas fa-briefcase"></i>
+                    <h3>Productivity</h3>
+                    <p>Tools for work and organization</p>
                 </div>
-                <div class="category-card">
-                    <i class="fas fa-heartbeat"></i>
-                    <h3>Health & Fitness</h3>
-                    <p>Workout & wellness apps</p>
+                <div class="category-card" data-category="tools">
+                    <i class="fas fa-tools"></i>
+                    <h3>Tools</h3>
+                    <p>Utilities and system apps</p>
                 </div>
             </div>
         </div>
@@ -684,38 +844,50 @@
             <h2 class="section-title">Most Popular Downloads</h2>
             <div class="popular-list">
                 <div class="popular-app">
-                    <img src="https://via.placeholder.com/60x60/3498db/ffffff?text=FB" alt="Facebook">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
                     <div class="popular-app-info">
                         <h3>Facebook</h3>
                         <p>Connect with friends and family</p>
-                        <span class="app-size">45.2 MB</span>
+                        <div class="app-details-small">
+                            <span class="app-version">v412.0.0.32.116</span>
+                            <span class="app-size">45.2 MB</span>
+                        </div>
                     </div>
                     <button class="download-btn" data-app="facebook">Download</button>
                 </div>
                 <div class="popular-app">
-                    <img src="https://via.placeholder.com/60x60/2ecc71/ffffff?text=YT" alt="YouTube">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube">
                     <div class="popular-app-info">
                         <h3>YouTube</h3>
                         <p>Watch and share videos</p>
-                        <span class="app-size">38.7 MB</span>
+                        <div class="app-details-small">
+                            <span class="app-version">v18.38.36</span>
+                            <span class="app-size">38.7 MB</span>
+                        </div>
                     </div>
                     <button class="download-btn" data-app="youtube">Download</button>
                 </div>
                 <div class="popular-app">
-                    <img src="https://via.placeholder.com/60x60/e74c3c/ffffff?text=Netflix" alt="Netflix">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Netflix_logo.svg" alt="Netflix">
                     <div class="popular-app-info">
                         <h3>Netflix</h3>
                         <p>Stream TV shows and movies</p>
-                        <span class="app-size">27.3 MB</span>
+                        <div class="app-details-small">
+                            <span class="app-version">v8.82.0</span>
+                            <span class="app-size">27.3 MB</span>
+                        </div>
                     </div>
                     <button class="download-btn" data-app="netflix">Download</button>
                 </div>
                 <div class="popular-app">
-                    <img src="https://via.placeholder.com/60x60/9b59b6/ffffff?text=TikTok" alt="TikTok">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg" alt="TikTok">
                     <div class="popular-app-info">
                         <h3>TikTok</h3>
                         <p>Short-form mobile videos</p>
-                        <span class="app-size">82.1 MB</span>
+                        <div class="app-details-small">
+                            <span class="app-version">v30.0.4</span>
+                            <span class="app-size">82.1 MB</span>
+                        </div>
                     </div>
                     <button class="download-btn" data-app="tiktok">Download</button>
                 </div>
@@ -741,6 +913,7 @@
                     <h3>Quick Links</h3>
                     <ul>
                         <li><a href="#">Home</a></li>
+                        <li><a href="#features">Features</a></li>
                         <li><a href="#featured">Featured Apps</a></li>
                         <li><a href="#categories">Categories</a></li>
                         <li><a href="#popular">Popular Apps</a></li>
@@ -767,6 +940,10 @@
             const searchBtn = document.getElementById('searchBtn');
             const appSearch = document.getElementById('appSearch');
             const downloadButtons = document.querySelectorAll('.download-btn');
+            const categoryCards = document.querySelectorAll('.category-card');
+            
+            // Create floating particles
+            createParticles();
             
             // Search functionality
             searchBtn.addEventListener('click', function() {
@@ -789,6 +966,16 @@
                 button.addEventListener('click', function() {
                     const appName = this.getAttribute('data-app');
                     downloadAPK(appName);
+                });
+            });
+            
+            // Category card functionality
+            categoryCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    appSearch.value = category;
+                    appSearch.focus();
+                    alert(`Searching for ${category} apps. Type a specific app name or press Search to browse the category.`);
                 });
             });
             
@@ -818,6 +1005,31 @@
                 }, 2000);
             }
             
+            // Create floating particles
+            function createParticles() {
+                const particlesContainer = document.getElementById('particles');
+                const particleCount = 30;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    
+                    // Random properties
+                    const size = Math.random() * 5 + 2;
+                    const left = Math.random() * 100;
+                    const animationDuration = Math.random() * 20 + 10;
+                    const animationDelay = Math.random() * 10;
+                    
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${left}%`;
+                    particle.style.animationDuration = `${animationDuration}s`;
+                    particle.style.animationDelay = `${animationDelay}s`;
+                    
+                    particlesContainer.appendChild(particle);
+                }
+            }
+            
             // Add animation to cards on scroll
             const observerOptions = {
                 threshold: 0.1,
@@ -834,7 +1046,7 @@
             }, observerOptions);
             
             // Observe all cards for animation
-            document.querySelectorAll('.app-card, .category-card, .popular-app').forEach(card => {
+            document.querySelectorAll('.app-card, .category-card, .popular-app, .feature-card').forEach(card => {
                 card.style.opacity = '0';
                 card.style.transform = 'translateY(20px)';
                 card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
