@@ -26,17 +26,83 @@
         }
 
         body {
-            background-color: #f5f7fa;
-            color: var(--dark-text);
+            background-color: #0a0a1a;
+            color: var(--light-text);
             line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Lightning Background */
+        .lightning-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #16213e 100%);
+            overflow: hidden;
+        }
+
+        .lightning {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: linear-gradient(90deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            opacity: 0;
+            transform: skewX(-20deg);
+            animation: lightningFlash 8s infinite;
+        }
+
+        .lightning:nth-child(2) {
+            animation-delay: 3s;
+        }
+
+        .lightning:nth-child(3) {
+            animation-delay: 7s;
+        }
+
+        @keyframes lightningFlash {
+            0%, 100% { opacity: 0; }
+            1% { opacity: 0.8; }
+            2% { opacity: 0.2; }
+            3% { opacity: 0.8; }
+            4% { opacity: 0; }
+        }
+
+        .thunder {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: rgba(255, 255, 255, 0);
+            animation: thunderRumble 15s infinite;
+        }
+
+        @keyframes thunderRumble {
+            0%, 100% { background-color: rgba(255, 255, 255, 0); }
+            20% { background-color: rgba(255, 255, 255, 0.02); }
+            21% { background-color: rgba(255, 255, 255, 0); }
+            50% { background-color: rgba(255, 255, 255, 0.03); }
+            51% { background-color: rgba(255, 255, 255, 0); }
+            80% { background-color: rgba(255, 255, 255, 0.01); }
+            81% { background-color: rgba(255, 255, 255, 0); }
         }
 
         /* Header Styles */
         header {
-            background: linear-gradient(135deg, var(--header-bg), #9b59b6);
+            background: linear-gradient(135deg, rgba(142, 68, 173, 0.9), rgba(155, 89, 182, 0.9));
             color: var(--light-text);
             padding: 1.5rem 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 10;
         }
 
         .container {
@@ -70,6 +136,27 @@
             color: #f1c40f;
         }
 
+        .creator-tag {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-style: italic;
+        }
+
+        .creator-name {
+            font-weight: bold;
+            color: #f1c40f;
+            text-shadow: 0 0 10px rgba(241, 196, 15, 0.5);
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 5px rgba(241, 196, 15, 0.5); }
+            to { text-shadow: 0 0 15px rgba(241, 196, 15, 0.8), 0 0 20px rgba(241, 196, 15, 0.6); }
+        }
+
         nav ul {
             display: flex;
             list-style: none;
@@ -98,10 +185,13 @@
 
         /* Search Section */
         .search-section {
-            background: linear-gradient(135deg, var(--search-bg), #2980b9);
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.9), rgba(41, 128, 185, 0.9));
             color: var(--light-text);
             padding: 3rem 0;
             text-align: center;
+            backdrop-filter: blur(5px);
+            position: relative;
+            z-index: 5;
         }
 
         .search-section h2 {
@@ -130,6 +220,7 @@
             border: none;
             outline: none;
             font-size: 1rem;
+            background: rgba(255, 255, 255, 0.9);
         }
 
         .search-box button {
@@ -148,9 +239,12 @@
 
         /* Featured Apps Section */
         .featured-section {
-            background: linear-gradient(135deg, var(--featured-bg), #c0392b);
+            background: linear-gradient(135deg, rgba(231, 76, 60, 0.9), rgba(192, 57, 43, 0.9));
             color: var(--light-text);
             padding: 3rem 0;
+            backdrop-filter: blur(5px);
+            position: relative;
+            z-index: 5;
         }
 
         .section-title {
@@ -220,9 +314,12 @@
 
         /* Categories Section */
         .categories-section {
-            background: linear-gradient(135deg, var(--categories-bg), #27ae60);
+            background: linear-gradient(135deg, rgba(46, 204, 113, 0.9), rgba(39, 174, 96, 0.9));
             color: var(--light-text);
             padding: 3rem 0;
+            backdrop-filter: blur(5px);
+            position: relative;
+            z-index: 5;
         }
 
         .categories-grid {
@@ -262,9 +359,12 @@
 
         /* Popular Apps Section */
         .popular-section {
-            background: linear-gradient(135deg, var(--popular-bg), #e67e22);
+            background: linear-gradient(135deg, rgba(243, 156, 18, 0.9), rgba(230, 126, 34, 0.9));
             color: var(--light-text);
             padding: 3rem 0;
+            backdrop-filter: blur(5px);
+            position: relative;
+            z-index: 5;
         }
 
         .popular-list {
@@ -316,9 +416,12 @@
 
         /* Footer */
         footer {
-            background: linear-gradient(135deg, var(--footer-bg), #2c3e50);
+            background: linear-gradient(135deg, rgba(52, 73, 94, 0.9), rgba(44, 62, 80, 0.9));
             color: var(--light-text);
             padding: 3rem 0 1.5rem;
+            backdrop-filter: blur(5px);
+            position: relative;
+            z-index: 5;
         }
 
         .footer-content {
@@ -401,6 +504,11 @@
                 text-align: center;
             }
 
+            .creator-tag {
+                position: static;
+                margin-top: 10px;
+            }
+
             nav ul {
                 margin-top: 1rem;
                 justify-content: center;
@@ -447,6 +555,14 @@
     </style>
 </head>
 <body>
+    <!-- Lightning Background -->
+    <div class="lightning-bg">
+        <div class="lightning"></div>
+        <div class="lightning"></div>
+        <div class="lightning"></div>
+        <div class="thunder"></div>
+    </div>
+
     <!-- Header Section -->
     <header>
         <div class="container">
@@ -454,6 +570,9 @@
                 <div class="logo">
                     <i class="fas fa-download"></i>
                     <h1>APK<span>Downloader</span></h1>
+                </div>
+                <div class="creator-tag">
+                    Created by <span class="creator-name">INNOCENT TECH</span>
                 </div>
                 <nav>
                     <ul>
@@ -489,7 +608,7 @@
                     <div class="app-info">
                         <h3>Telegram</h3>
                         <p>Fast and secure messaging app</p>
-                        <a href="https://apk-downloader.bjcoderx.workers.dev/?query=telegram" class="download-btn">Download APK</a>
+                        <button class="download-btn" data-app="telegram">Download APK</button>
                     </div>
                 </div>
                 <div class="app-card">
@@ -497,7 +616,7 @@
                     <div class="app-info">
                         <h3>WhatsApp</h3>
                         <p>Simple, reliable messaging</p>
-                        <a href="https://apk-downloader.bjcoderx.workers.dev/?query=whatsapp" class="download-btn">Download APK</a>
+                        <button class="download-btn" data-app="whatsapp">Download APK</button>
                     </div>
                 </div>
                 <div class="app-card">
@@ -505,7 +624,7 @@
                     <div class="app-info">
                         <h3>Instagram</h3>
                         <p>Photo and video sharing app</p>
-                        <a href="https://apk-downloader.bjcoderx.workers.dev/?query=instagram" class="download-btn">Download APK</a>
+                        <button class="download-btn" data-app="instagram">Download APK</button>
                     </div>
                 </div>
                 <div class="app-card">
@@ -513,7 +632,7 @@
                     <div class="app-info">
                         <h3>Spotify</h3>
                         <p>Music and podcast streaming</p>
-                        <a href="https://apk-downloader.bjcoderx.workers.dev/?query=spotify" class="download-btn">Download APK</a>
+                        <button class="download-btn" data-app="spotify">Download APK</button>
                     </div>
                 </div>
             </div>
@@ -571,7 +690,7 @@
                         <p>Connect with friends and family</p>
                         <span class="app-size">45.2 MB</span>
                     </div>
-                    <a href="https://apk-downloader.bjcoderx.workers.dev/?query=facebook" class="download-btn">Download</a>
+                    <button class="download-btn" data-app="facebook">Download</button>
                 </div>
                 <div class="popular-app">
                     <img src="https://via.placeholder.com/60x60/2ecc71/ffffff?text=YT" alt="YouTube">
@@ -580,7 +699,7 @@
                         <p>Watch and share videos</p>
                         <span class="app-size">38.7 MB</span>
                     </div>
-                    <a href="https://apk-downloader.bjcoderx.workers.dev/?query=youtube" class="download-btn">Download</a>
+                    <button class="download-btn" data-app="youtube">Download</button>
                 </div>
                 <div class="popular-app">
                     <img src="https://via.placeholder.com/60x60/e74c3c/ffffff?text=Netflix" alt="Netflix">
@@ -589,7 +708,7 @@
                         <p>Stream TV shows and movies</p>
                         <span class="app-size">27.3 MB</span>
                     </div>
-                    <a href="https://apk-downloader.bjcoderx.workers.dev/?query=netflix" class="download-btn">Download</a>
+                    <button class="download-btn" data-app="netflix">Download</button>
                 </div>
                 <div class="popular-app">
                     <img src="https://via.placeholder.com/60x60/9b59b6/ffffff?text=TikTok" alt="TikTok">
@@ -598,7 +717,7 @@
                         <p>Short-form mobile videos</p>
                         <span class="app-size">82.1 MB</span>
                     </div>
-                    <a href="https://apk-downloader.bjcoderx.workers.dev/?query=tiktok" class="download-btn">Download</a>
+                    <button class="download-btn" data-app="tiktok">Download</button>
                 </div>
             </div>
         </div>
@@ -638,7 +757,7 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 APK Downloader. All rights reserved.</p>
+                <p>&copy; 2023 APK Downloader. Created by <span class="creator-name">INNOCENT TECH</span>. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -647,11 +766,13 @@
         document.addEventListener('DOMContentLoaded', function() {
             const searchBtn = document.getElementById('searchBtn');
             const appSearch = document.getElementById('appSearch');
+            const downloadButtons = document.querySelectorAll('.download-btn');
             
+            // Search functionality
             searchBtn.addEventListener('click', function() {
                 const query = appSearch.value.trim();
                 if (query) {
-                    window.location.href = `https://apk-downloader.bjcoderx.workers.dev/?query=${encodeURIComponent(query)}`;
+                    downloadAPK(query);
                 } else {
                     alert('Please enter an app name to search for.');
                 }
@@ -662,6 +783,40 @@
                     searchBtn.click();
                 }
             });
+            
+            // Download button functionality
+            downloadButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const appName = this.getAttribute('data-app');
+                    downloadAPK(appName);
+                });
+            });
+            
+            // Download APK function
+            function downloadAPK(appName) {
+                // Show loading state
+                const originalText = event.target.textContent;
+                event.target.textContent = 'Downloading...';
+                event.target.disabled = true;
+                
+                // Create a hidden iframe to trigger download
+                const iframe = document.createElement('iframe');
+                iframe.style.display = 'none';
+                iframe.src = `https://apk-downloader.bjcoderx.workers.dev/?query=${encodeURIComponent(appName)}`;
+                document.body.appendChild(iframe);
+                
+                // Reset button after a delay
+                setTimeout(() => {
+                    event.target.textContent = originalText;
+                    event.target.disabled = false;
+                    
+                    // Remove iframe
+                    document.body.removeChild(iframe);
+                    
+                    // Show success message
+                    alert(`Download started for ${appName}! If download doesn't start, check your browser's download settings.`);
+                }, 2000);
+            }
             
             // Add animation to cards on scroll
             const observerOptions = {
