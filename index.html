@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APK Downloader | Get Android Apps Directly</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --header-bg: #8e44ad;
+            --search-bg: #3498db;
+            --featured-bg: #e74c3c;
+            --categories-bg: #2ecc71;
+            --popular-bg: #f39c12;
+            --footer-bg: #34495e;
+            --light-text: #ffffff;
+            --dark-text: #2c3e50;
+            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--header-bg), #9b59b6);
+            color: var(--light-text);
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+            margin-right: 10px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: #f1c40f;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li a:hover {
+            color: #f1c40f;
+        }
+
+        nav ul li a i {
+            margin-right: 5px;
+        }
+
+        /* Search Section */
+        .search-section {
+            background: linear-gradient(135deg, var(--search-bg), #2980b9);
+            color: var(--light-text);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .search-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .search-section p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .search-box {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: var(--card-shadow);
+            border-radius: 50px;
+            overflow: hidden;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+        }
+
+        .search-box button {
+            background: var(--header-bg);
+            color: var(--light-text);
+            border: none;
+            padding: 0 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .search-box button:hover {
+            background: #7d3c98;
+        }
+
+        /* Featured Apps Section */
+        .featured-section {
+            background: linear-gradient(135deg, var(--featured-bg), #c0392b);
+            color: var(--light-text);
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .app-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s;
+            color: var(--dark-text);
+        }
+
+        .app-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .app-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .app-info {
+            padding: 1rem;
+        }
+
+        .app-info h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .app-info p {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .download-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: var(--featured-bg);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .download-btn:hover {
+            background: #c0392b;
+        }
+
+        /* Categories Section */
+        .categories-section {
+            background: linear-gradient(135deg, var(--categories-bg), #27ae60);
+            color: var(--light-text);
+            padding: 3rem 0;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s;
+            color: var(--dark-text);
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-card i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--categories-bg);
+        }
+
+        .category-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .category-card p {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        /* Popular Apps Section */
+        .popular-section {
+            background: linear-gradient(135deg, var(--popular-bg), #e67e22);
+            color: var(--light-text);
+            padding: 3rem 0;
+        }
+
+        .popular-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .popular-app {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s;
+            color: var(--dark-text);
+        }
+
+        .popular-app:hover {
+            transform: translateY(-5px);
+        }
+
+        .popular-app img {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            margin-right: 1rem;
+        }
+
+        .popular-app-info {
+            flex: 1;
+        }
+
+        .popular-app-info h3 {
+            margin-bottom: 0.3rem;
+        }
+
+        .popular-app-info p {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .app-size {
+            font-weight: 600;
+            color: var(--popular-bg);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--footer-bg), #2c3e50);
+            color: var(--light-text);
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--popular-bg);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--light-text);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--light-text);
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--popular-bg);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0 0.7rem;
+            }
+
+            .search-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo h1 {
+                font-size: 1.5rem;
+            }
+
+            .search-box {
+                flex-direction: column;
+                border-radius: 10px;
+            }
+
+            .search-box input {
+                border-radius: 10px 10px 0 0;
+            }
+
+            .search-box button {
+                border-radius: 0 0 10px 10px;
+                padding: 12px;
+            }
+
+            .apps-grid,
+            .categories-grid,
+            .popular-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-download"></i>
+                    <h1>APK<span>Downloader</span></h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#featured"><i class="fas fa-star"></i> Featured</a></li>
+                        <li><a href="#categories"><i class="fas fa-th-large"></i> Categories</a></li>
+                        <li><a href="#popular"><i class="fas fa-fire"></i> Popular</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <h2>Download Any APK Directly</h2>
+            <p>Search for your favorite Android apps and download them directly in APK format. Safe, fast, and easy!</p>
+            <div class="search-box">
+                <input type="text" id="appSearch" placeholder="Search for an app (e.g., Telegram, WhatsApp, Instagram)">
+                <button id="searchBtn"><i class="fas fa-search"></i> Search</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Apps Section -->
+    <section class="featured-section" id="featured">
+        <div class="container">
+            <h2 class="section-title">Featured Apps</h2>
+            <div class="apps-grid">
+                <div class="app-card">
+                    <img src="https://via.placeholder.com/300x150/3498db/ffffff?text=Telegram" alt="Telegram">
+                    <div class="app-info">
+                        <h3>Telegram</h3>
+                        <p>Fast and secure messaging app</p>
+                        <a href="https://apk-downloader.bjcoderx.workers.dev/?query=telegram" class="download-btn">Download APK</a>
+                    </div>
+                </div>
+                <div class="app-card">
+                    <img src="https://via.placeholder.com/300x150/2ecc71/ffffff?text=WhatsApp" alt="WhatsApp">
+                    <div class="app-info">
+                        <h3>WhatsApp</h3>
+                        <p>Simple, reliable messaging</p>
+                        <a href="https://apk-downloader.bjcoderx.workers.dev/?query=whatsapp" class="download-btn">Download APK</a>
+                    </div>
+                </div>
+                <div class="app-card">
+                    <img src="https://via.placeholder.com/300x150/e74c3c/ffffff?text=Instagram" alt="Instagram">
+                    <div class="app-info">
+                        <h3>Instagram</h3>
+                        <p>Photo and video sharing app</p>
+                        <a href="https://apk-downloader.bjcoderx.workers.dev/?query=instagram" class="download-btn">Download APK</a>
+                    </div>
+                </div>
+                <div class="app-card">
+                    <img src="https://via.placeholder.com/300x150/f39c12/ffffff?text=Spotify" alt="Spotify">
+                    <div class="app-info">
+                        <h3>Spotify</h3>
+                        <p>Music and podcast streaming</p>
+                        <a href="https://apk-downloader.bjcoderx.workers.dev/?query=spotify" class="download-btn">Download APK</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section" id="categories">
+        <div class="container">
+            <h2 class="section-title">App Categories</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>Games</h3>
+                    <p>Action, Adventure, Puzzle & more</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h3>Shopping</h3>
+                    <p>E-commerce & retail apps</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-film"></i>
+                    <h3>Entertainment</h3>
+                    <p>Movies, TV & streaming apps</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Education</h3>
+                    <p>Learning & educational apps</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-utensils"></i>
+                    <h3>Food & Drink</h3>
+                    <p>Recipes, delivery & more</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-heartbeat"></i>
+                    <h3>Health & Fitness</h3>
+                    <p>Workout & wellness apps</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Apps Section -->
+    <section class="popular-section" id="popular">
+        <div class="container">
+            <h2 class="section-title">Most Popular Downloads</h2>
+            <div class="popular-list">
+                <div class="popular-app">
+                    <img src="https://via.placeholder.com/60x60/3498db/ffffff?text=FB" alt="Facebook">
+                    <div class="popular-app-info">
+                        <h3>Facebook</h3>
+                        <p>Connect with friends and family</p>
+                        <span class="app-size">45.2 MB</span>
+                    </div>
+                    <a href="https://apk-downloader.bjcoderx.workers.dev/?query=facebook" class="download-btn">Download</a>
+                </div>
+                <div class="popular-app">
+                    <img src="https://via.placeholder.com/60x60/2ecc71/ffffff?text=YT" alt="YouTube">
+                    <div class="popular-app-info">
+                        <h3>YouTube</h3>
+                        <p>Watch and share videos</p>
+                        <span class="app-size">38.7 MB</span>
+                    </div>
+                    <a href="https://apk-downloader.bjcoderx.workers.dev/?query=youtube" class="download-btn">Download</a>
+                </div>
+                <div class="popular-app">
+                    <img src="https://via.placeholder.com/60x60/e74c3c/ffffff?text=Netflix" alt="Netflix">
+                    <div class="popular-app-info">
+                        <h3>Netflix</h3>
+                        <p>Stream TV shows and movies</p>
+                        <span class="app-size">27.3 MB</span>
+                    </div>
+                    <a href="https://apk-downloader.bjcoderx.workers.dev/?query=netflix" class="download-btn">Download</a>
+                </div>
+                <div class="popular-app">
+                    <img src="https://via.placeholder.com/60x60/9b59b6/ffffff?text=TikTok" alt="TikTok">
+                    <div class="popular-app-info">
+                        <h3>TikTok</h3>
+                        <p>Short-form mobile videos</p>
+                        <span class="app-size">82.1 MB</span>
+                    </div>
+                    <a href="https://apk-downloader.bjcoderx.workers.dev/?query=tiktok" class="download-btn">Download</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>APK Downloader</h3>
+                    <p>Your trusted source for Android APK files. Download safely and directly.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#featured">Featured Apps</a></li>
+                        <li><a href="#categories">Categories</a></li>
+                        <li><a href="#popular">Popular Apps</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 APK Downloader. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchBtn = document.getElementById('searchBtn');
+            const appSearch = document.getElementById('appSearch');
+            
+            searchBtn.addEventListener('click', function() {
+                const query = appSearch.value.trim();
+                if (query) {
+                    window.location.href = `https://apk-downloader.bjcoderx.workers.dev/?query=${encodeURIComponent(query)}`;
+                } else {
+                    alert('Please enter an app name to search for.');
+                }
+            });
+            
+            appSearch.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchBtn.click();
+                }
+            });
+            
+            // Add animation to cards on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all cards for animation
+            document.querySelectorAll('.app-card, .category-card, .popular-app').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
