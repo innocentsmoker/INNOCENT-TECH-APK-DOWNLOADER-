@@ -584,6 +584,65 @@
             font-size: 1.3rem;
         }
 
+        /* Instagram Section */
+        .instagram-section {
+            background: linear-gradient(135deg, rgba(225, 48, 108, 0.9), rgba(225, 48, 108, 0.8));
+            color: var(--light-text);
+            padding: 2rem 0;
+            backdrop-filter: blur(5px);
+            position: relative;
+            z-index: 5;
+        }
+
+        .instagram-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .instagram-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: white;
+            animation: pulse 2s infinite;
+        }
+
+        .instagram-container h2 {
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .instagram-container p {
+            max-width: 600px;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .instagram-btn {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(225, 48, 108, 0.4);
+        }
+
+        .instagram-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(225, 48, 108, 0.6);
+        }
+
+        .instagram-btn i {
+            margin-right: 10px;
+            font-size: 1.3rem;
+        }
+
         /* Footer */
         footer {
             background: linear-gradient(135deg, rgba(52, 73, 94, 0.9), rgba(44, 62, 80, 0.9));
@@ -975,6 +1034,20 @@
         </div>
     </section>
 
+    <!-- Instagram Contact Section -->
+    <section class="instagram-section" id="instagram">
+        <div class="container">
+            <div class="instagram-container">
+                <i class="fab fa-instagram instagram-icon"></i>
+                <h2>Follow Us on Instagram</h2>
+                <p>Stay updated with the latest app releases, tech tips, and behind-the-scenes content. Follow us on Instagram for daily updates!</p>
+                <a href="https://www.instagram.com/sam_ster9?igsh=MTFuNHB0eGFzbmVjNg==" class="instagram-btn" target="_blank">
+                    <i class="fab fa-instagram"></i> Follow on Instagram
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -985,7 +1058,7 @@
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/sam_ster9?igsh=MTFuNHB0eGFzbmVjNg==" target="_blank"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
@@ -997,7 +1070,8 @@
                         <li><a href="#featured">Featured Apps</a></li>
                         <li><a href="#categories">Categories</a></li>
                         <li><a href="#popular">Popular Apps</a></li>
-                        <li><a href="#whatsapp">Contact Us</a></li>
+                        <li><a href="#whatsapp">WhatsApp</a></li>
+                        <li><a href="#instagram">Instagram</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -1013,7 +1087,8 @@
                     <h3>Contact Info</h3>
                     <ul>
                         <li><i class="fab fa-whatsapp"></i> WhatsApp: +0751833703</li>
-                        <li><i class="fas fa-envelope"></i> Instagram: https://www.instagram.com/sam_ster9?igsh=MTFuNHB0eGFzbmVjNg==.com</li>
+                        <li><i class="fab fa-instagram"></i> Instagram: @sam_ster9</li>
+                        <li><i class="fas fa-envelope"></i> Email: info@apkdownloader.com</li>
                         <li><i class="fas fa-map-marker-alt"></i> Location: Online Service</li>
                     </ul>
                 </div>
