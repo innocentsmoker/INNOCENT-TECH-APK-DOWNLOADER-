@@ -584,6 +584,66 @@
             font-size: 1.3rem;
         }
 
+        /* WhatsApp Channel Section */
+        .whatsapp-channel-section {
+            background: linear-gradient(135deg, rgba(0, 128, 105, 0.9), rgba(37, 211, 102, 0.8));
+            color: var(--light-text);
+            padding: 2rem 0;
+            backdrop-filter: blur(5px);
+            position: relative;
+            z-index: 5;
+        }
+
+        .whatsapp-channel-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .whatsapp-channel-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: white;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-channel-container h2 {
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .whatsapp-channel-container p {
+            max-width: 600px;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .whatsapp-channel-btn {
+            display: inline-flex;
+            align-items: center;
+            background: #075E54;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(7, 94, 84, 0.4);
+        }
+
+        .whatsapp-channel-btn:hover {
+            background: #128C7E;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(7, 94, 84, 0.6);
+        }
+
+        .whatsapp-channel-btn i {
+            margin-right: 10px;
+            font-size: 1.3rem;
+        }
+
         /* Instagram Section */
         .instagram-section {
             background: linear-gradient(135deg, rgba(225, 48, 108, 0.9), rgba(225, 48, 108, 0.8));
@@ -1034,6 +1094,20 @@
         </div>
     </section>
 
+    <!-- WhatsApp Channel Section -->
+    <section class="whatsapp-channel-section" id="whatsapp-channel">
+        <div class="container">
+            <div class="whatsapp-channel-container">
+                <i class="fab fa-whatsapp whatsapp-channel-icon"></i>
+                <h2>Join Our WhatsApp Channel</h2>
+                <p>Stay updated with the latest app releases, exclusive content, and important announcements. We'd be delighted if you could join our WhatsApp Channel to receive regular updates!</p>
+                <a href="https://whatsapp.com/channel/0029VbBhmxkJuyACXj7A8j01" class="whatsapp-channel-btn" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Join WhatsApp Channel
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Instagram Contact Section -->
     <section class="instagram-section" id="instagram">
         <div class="container">
@@ -1071,6 +1145,7 @@
                         <li><a href="#categories">Categories</a></li>
                         <li><a href="#popular">Popular Apps</a></li>
                         <li><a href="#whatsapp">WhatsApp</a></li>
+                        <li><a href="#whatsapp-channel">WhatsApp Channel</a></li>
                         <li><a href="#instagram">Instagram</a></li>
                     </ul>
                 </div>
@@ -1087,6 +1162,7 @@
                     <h3>Contact Info</h3>
                     <ul>
                         <li><i class="fab fa-whatsapp"></i> WhatsApp: +0751833703</li>
+                        <li><i class="fab fa-whatsapp"></i> WhatsApp Channel: APK Updates</li>
                         <li><i class="fab fa-instagram"></i> Instagram: @sam_ster9</li>
                         <li><i class="fas fa-envelope"></i> Email: info@apkdownloader.com</li>
                         <li><i class="fas fa-map-marker-alt"></i> Location: Online Service</li>
