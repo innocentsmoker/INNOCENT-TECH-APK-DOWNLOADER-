@@ -518,6 +518,72 @@
             color: #7f8c8d;
         }
 
+        /* WhatsApp Section */
+        .whatsapp-section {
+            background: linear-gradient(135deg, rgba(37, 211, 102, 0.9), rgba(37, 211, 102, 0.8));
+            color: var(--light-text);
+            padding: 2rem 0;
+            backdrop-filter: blur(5px);
+            position: relative;
+            z-index: 5;
+        }
+
+        .whatsapp-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .whatsapp-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: white;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .whatsapp-container h2 {
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .whatsapp-container p {
+            max-width: 600px;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            background: #25D366;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-btn i {
+            margin-right: 10px;
+            font-size: 1.3rem;
+        }
+
         /* Footer */
         footer {
             background: linear-gradient(135deg, rgba(52, 73, 94, 0.9), rgba(44, 62, 80, 0.9));
@@ -895,6 +961,20 @@
         </div>
     </section>
 
+    <!-- WhatsApp Contact Section -->
+    <section class="whatsapp-section" id="whatsapp">
+        <div class="container">
+            <div class="whatsapp-container">
+                <i class="fab fa-whatsapp whatsapp-icon"></i>
+                <h2>Contact Us on WhatsApp</h2>
+                <p>Have questions or need help? Reach out to us directly on WhatsApp. We're here to assist you with any inquiries or support you may need.</p>
+                <a href="https://wa.me/0751833703" class="whatsapp-btn" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -917,15 +997,24 @@
                         <li><a href="#featured">Featured Apps</a></li>
                         <li><a href="#categories">Categories</a></li>
                         <li><a href="#popular">Popular Apps</a></li>
+                        <li><a href="#whatsapp">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Support</h3>
                     <ul>
                         <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#whatsapp">Contact Us</a></li>
                         <li><a href="#">FAQ</a></li>
                         <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fab fa-whatsapp"></i> WhatsApp: +0751833703</li>
+                        <li><i class="fas fa-envelope"></i> Instagram: https://www.instagram.com/sam_ster9?igsh=MTFuNHB0eGFzbmVjNg==.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Location: Online Service</li>
                     </ul>
                 </div>
             </div>
