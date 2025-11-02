@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APK Downloader | Get Android Apps Directly</title>
+    <title>WhatsApp Ban Manager | INNOCENT TECH STUDIOS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --header-bg: #8e44ad;
-            --search-bg: #3498db;
-            --featured-bg: #e74c3c;
-            --categories-bg: #2ecc71;
-            --popular-bg: #f39c12;
-            --footer-bg: #34495e;
+            --gold: #FFD700;
+            --yellow: #FFEB3B;
+            --green: #4CAF50;
+            --blue: #2196F3;
+            --pink: #E91E63;
             --light-text: #ffffff;
-            --dark-text: #2c3e50;
+            --dark-text: #333333;
             --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
@@ -26,283 +25,18 @@
         }
 
         body {
-            background-color: #0a0a1a;
-            color: var(--light-text);
+            background-color: #f5f7fa;
+            color: var(--dark-text);
             line-height: 1.6;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Enhanced Lightning Background */
-        .lightning-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #16213e 100%);
-            overflow: hidden;
-        }
-
-        .lightning {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background: linear-gradient(90deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
-            opacity: 0;
-            transform: skewX(-20deg);
-            animation: lightningFlash 12s infinite;
-        }
-
-        .lightning:nth-child(2) {
-            animation-delay: 4s;
-        }
-
-        .lightning:nth-child(3) {
-            animation-delay: 8s;
-        }
-
-        @keyframes lightningFlash {
-            0%, 100% { opacity: 0; }
-            1% { opacity: 0.9; }
-            2% { opacity: 0.2; }
-            3% { opacity: 0.8; }
-            4% { opacity: 0; }
-        }
-
-        .thunder {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background-color: rgba(255, 255, 255, 0);
-            animation: thunderRumble 18s infinite;
-        }
-
-        @keyframes thunderRumble {
-            0%, 100% { background-color: rgba(255, 255, 255, 0); }
-            15% { background-color: rgba(255, 255, 255, 0.03); }
-            16% { background-color: rgba(255, 255, 255, 0); }
-            45% { background-color: rgba(255, 255, 255, 0.04); }
-            46% { background-color: rgba(255, 255, 255, 0); }
-            75% { background-color: rgba(255, 255, 255, 0.02); }
-            76% { background-color: rgba(255, 255, 255, 0); }
-        }
-
-        /* Floating particles effect */
-        .particles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-        }
-
-        .particle {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            animation: float 15s infinite linear;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.7; }
-            90% { opacity: 0.7; }
-            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
-        }
-
-        /* Fixed Download Frame */
-        .download-frame {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            max-width: 500px;
-            height: 300px;
-            background: linear-gradient(135deg, rgba(52, 152, 219, 0.95), rgba(41, 128, 185, 0.95));
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        .download-frame.active {
-            display: flex;
-            animation: frameAppear 0.3s ease-out;
-        }
-
-        @keyframes frameAppear {
-            from { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-        }
-
-        .frame-header {
-            background: rgba(0, 0, 0, 0.2);
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .frame-header h3 {
-            margin: 0;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .close-frame {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 5px;
-            border-radius: 50%;
-            width: 35px;
-            height: 35px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s;
-        }
-
-        .close-frame:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .frame-content {
-            flex: 1;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .frame-icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            color: #f1c40f;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-
-        .frame-content h4 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-        .frame-content p {
-            margin-bottom: 20px;
-            opacity: 0.9;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 4px;
-            overflow: hidden;
-            margin: 20px 0;
-        }
-
-        .progress {
-            height: 100%;
-            background: linear-gradient(90deg, #2ecc71, #f1c40f);
-            width: 0%;
-            transition: width 0.3s ease;
-            border-radius: 4px;
-        }
-
-        .frame-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .frame-btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 25px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .frame-btn.primary {
-            background: #f39c12;
-            color: white;
-        }
-
-        .frame-btn.primary:hover {
-            background: #e67e22;
-            transform: translateY(-2px);
-        }
-
-        .frame-btn.secondary {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-        }
-
-        .frame-btn.secondary:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        /* Overlay */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 999;
-            display: none;
-            backdrop-filter: blur(5px);
-        }
-
-        .overlay.active {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
 
         /* Header Styles */
         header {
-            background: linear-gradient(135deg, rgba(142, 68, 173, 0.9), rgba(155, 89, 182, 0.9));
-            color: var(--light-text);
+            background: linear-gradient(135deg, var(--gold), var(--yellow));
+            color: var(--dark-text);
             padding: 1.5rem 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            position: relative;
-            z-index: 10;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
 
         .container {
@@ -311,15 +45,11 @@
             margin: 0 auto;
         }
 
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
         .logo {
             display: flex;
             align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
         }
 
         .logo i {
@@ -328,623 +58,309 @@
         }
 
         .logo h1 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 700;
         }
 
-        .logo span {
-            color: #f1c40f;
-        }
-
         .creator-tag {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            color: rgba(0, 0, 0, 0.7);
             font-style: italic;
         }
 
         .creator-name {
             font-weight: bold;
-            color: #f1c40f;
-            text-shadow: 0 0 10px rgba(241, 196, 15, 0.5);
-            animation: glow 2s infinite alternate;
+            color: #E91E63;
+            text-shadow: 0 0 5px rgba(233, 30, 99, 0.3);
         }
 
-        @keyframes glow {
-            from { text-shadow: 0 0 5px rgba(241, 196, 15, 0.5); }
-            to { text-shadow: 0 0 15px rgba(241, 196, 15, 0.8), 0 0 20px rgba(241, 196, 15, 0.6); }
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 1.5rem;
-        }
-
-        nav ul li a {
-            color: var(--light-text);
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
-            display: flex;
-            align-items: center;
-        }
-
-        nav ul li a:hover {
-            color: #f1c40f;
-        }
-
-        nav ul li a i {
-            margin-right: 5px;
-        }
-
-        /* Search Section */
-        .search-section {
-            background: linear-gradient(135deg, rgba(52, 152, 219, 0.9), rgba(41, 128, 185, 0.9));
-            color: var(--light-text);
-            padding: 3rem 0;
-            text-align: center;
-            backdrop-filter: blur(5px);
-            position: relative;
-            z-index: 5;
-        }
-
-        .search-section h2 {
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .search-section p {
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-        }
-
-        .search-box {
-            display: flex;
-            max-width: 600px;
-            margin: 0 auto;
-            box-shadow: var(--card-shadow);
-            border-radius: 50px;
-            overflow: hidden;
-        }
-
-        .search-box input {
-            flex: 1;
-            padding: 15px 20px;
-            border: none;
-            outline: none;
-            font-size: 1rem;
-            background: rgba(255, 255, 255, 0.9);
-        }
-
-        .search-box button {
-            background: var(--header-bg);
-            color: var(--light-text);
-            border: none;
-            padding: 0 25px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background 0.3s;
-        }
-
-        .search-box button:hover {
-            background: #7d3c98;
-        }
-
-        /* APK Features Section */
-        .features-section {
-            background: linear-gradient(135deg, rgba(155, 89, 182, 0.9), rgba(142, 68, 173, 0.9));
-            color: var(--light-text);
-            padding: 3rem 0;
-            backdrop-filter: blur(5px);
-            position: relative;
-            z-index: 5;
-        }
-
-        .features-grid {
+        /* Main Content */
+        .main-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
         }
 
-        .feature-card {
-            background: rgba(255, 255, 255, 0.9);
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Card Styles */
+        .card {
+            background-color: white;
             border-radius: 10px;
-            padding: 1.5rem;
-            text-align: center;
             box-shadow: var(--card-shadow);
-            transition: transform 0.3s;
-            color: var(--dark-text);
+            padding: 20px;
+            margin-bottom: 20px;
         }
 
-        .feature-card:hover {
-            transform: translateY(-5px);
+        .card h2 {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid;
         }
 
-        .feature-card i {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--header-bg);
+        /* Input Section - Green */
+        .input-section .card {
+            border-top: 5px solid var(--green);
         }
 
-        .feature-card h3 {
-            margin-bottom: 0.5rem;
-            font-size: 1.3rem;
+        .input-section h2 {
+            color: var(--green);
+            border-bottom-color: var(--green);
         }
 
-        .feature-card p {
-            color: #7f8c8d;
-            font-size: 0.9rem;
+        /* Banned List Section - Blue */
+        .banned-section .card {
+            border-top: 5px solid var(--blue);
         }
 
-        /* Featured Apps Section */
-        .featured-section {
-            background: linear-gradient(135deg, rgba(231, 76, 60, 0.9), rgba(192, 57, 43, 0.9));
-            color: var(--light-text);
-            padding: 3rem 0;
-            backdrop-filter: blur(5px);
-            position: relative;
-            z-index: 5;
+        .banned-section h2 {
+            color: var(--blue);
+            border-bottom-color: var(--blue);
         }
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2rem;
+        /* Stats Section - Pink */
+        .stats-section .card {
+            border-top: 5px solid var(--pink);
         }
 
-        .apps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
+        .stats-section h2 {
+            color: var(--pink);
+            border-bottom-color: var(--pink);
         }
 
-        .app-card {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.3s;
-            color: var(--dark-text);
-            position: relative;
+        /* Input Group */
+        .input-group {
+            margin-bottom: 15px;
         }
 
-        .app-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .app-icon {
-            width: 100%;
-            height: 150px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .app-icon img {
-            width: 80px;
-            height: 80px;
-            border-radius: 20px;
-            object-fit: cover;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-
-        .app-info {
-            padding: 1rem;
-        }
-
-        .app-info h3 {
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-        }
-
-        .app-info p {
-            color: #7f8c8d;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .app-details {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-            font-size: 0.8rem;
-            color: #7f8c8d;
-        }
-
-        .app-version {
-            font-weight: 600;
-            color: var(--featured-bg);
-        }
-
-        .app-size {
-            font-weight: 600;
-            color: var(--popular-bg);
-        }
-
-        .download-btn {
+        label {
             display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        textarea, input[type="text"], select {
             width: 100%;
             padding: 10px;
-            background: var(--featured-bg);
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            resize: vertical;
+        }
+
+        textarea {
+            min-height: 120px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background-color: var(--green);
             color: white;
             border: none;
+            padding: 10px 15px;
             border-radius: 5px;
-            font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s;
-            text-align: center;
-            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s;
+            margin-right: 10px;
+            margin-bottom: 10px;
         }
 
-        .download-btn:hover {
-            background: #c0392b;
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        /* Categories Section */
-        .categories-section {
-            background: linear-gradient(135deg, rgba(46, 204, 113, 0.9), rgba(39, 174, 96, 0.9));
-            color: var(--light-text);
-            padding: 3rem 0;
-            backdrop-filter: blur(5px);
-            position: relative;
-            z-index: 5;
+        .btn-blue {
+            background-color: var(--blue);
         }
 
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1.5rem;
+        .btn-pink {
+            background-color: var(--pink);
         }
 
-        .category-card {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.3s;
+        .btn-yellow {
+            background-color: var(--yellow);
             color: var(--dark-text);
-            cursor: pointer;
         }
 
-        .category-card:hover {
-            transform: translateY(-5px);
+        .btn-gold {
+            background-color: var(--gold);
+            color: var(--dark-text);
         }
 
-        .category-card i {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--categories-bg);
+        .btn-danger {
+            background-color: #dc3545;
         }
 
-        .category-card h3 {
-            margin-bottom: 0.5rem;
-        }
-
-        .category-card p {
-            color: #7f8c8d;
-            font-size: 0.9rem;
-        }
-
-        /* Popular Apps Section */
-        .popular-section {
-            background: linear-gradient(135deg, rgba(243, 156, 18, 0.9), rgba(230, 126, 34, 0.9));
-            color: var(--light-text);
-            padding: 3rem 0;
-            backdrop-filter: blur(5px);
-            position: relative;
-            z-index: 5;
-        }
-
-        .popular-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .popular-app {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            padding: 1.5rem;
+        .btn-group {
             display: flex;
-            align-items: center;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.3s;
-            color: var(--dark-text);
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
         }
 
-        .popular-app:hover {
-            transform: translateY(-5px);
+        /* Banned List */
+        .banned-list {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
         }
 
-        .popular-app img {
-            width: 60px;
-            height: 60px;
-            border-radius: 15px;
-            margin-right: 1rem;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-
-        .popular-app-info {
-            flex: 1;
-        }
-
-        .popular-app-info h3 {
-            margin-bottom: 0.3rem;
-        }
-
-        .popular-app-info p {
-            color: #7f8c8d;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .app-details-small {
+        .banned-item {
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.3s;
+        }
+
+        .banned-item:hover {
+            background-color: #f9f9f9;
+        }
+
+        .banned-item:last-child {
+            border-bottom: none;
+        }
+
+        .banned-number {
+            font-weight: 500;
+        }
+
+        .ban-type {
             font-size: 0.8rem;
-            color: #7f8c8d;
+            padding: 2px 8px;
+            border-radius: 10px;
+            color: white;
+            margin-left: 10px;
         }
 
-        /* WhatsApp Section */
-        .whatsapp-section {
-            background: linear-gradient(135deg, rgba(37, 211, 102, 0.9), rgba(37, 211, 102, 0.8));
-            color: var(--light-text);
-            padding: 2rem 0;
-            backdrop-filter: blur(5px);
-            position: relative;
-            z-index: 5;
+        .ban-permanent {
+            background-color: var(--pink);
         }
 
-        .whatsapp-container {
+        .ban-temporary {
+            background-color: var(--blue);
+        }
+
+        .banned-actions {
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            gap: 5px;
+        }
+
+        .action-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #666;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .action-btn:hover {
+            color: var(--pink);
+        }
+
+        .empty-state {
             text-align: center;
+            padding: 20px;
+            color: #666;
         }
 
-        .whatsapp-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: white;
-            animation: pulse 2s infinite;
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        .whatsapp-container h2 {
-            margin-bottom: 1rem;
-            font-size: 2rem;
-        }
-
-        .whatsapp-container p {
-            max-width: 600px;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-
-        .whatsapp-btn {
-            display: inline-flex;
-            align-items: center;
-            background: #25D366;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-        }
-
-        .whatsapp-btn:hover {
-            background: #128C7E;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
-        }
-
-        .whatsapp-btn i {
-            margin-right: 10px;
-            font-size: 1.3rem;
-        }
-
-        /* WhatsApp Channel Section */
-        .whatsapp-channel-section {
-            background: linear-gradient(135deg, rgba(0, 128, 105, 0.9), rgba(37, 211, 102, 0.8));
-            color: var(--light-text);
-            padding: 2rem 0;
-            backdrop-filter: blur(5px);
-            position: relative;
-            z-index: 5;
-        }
-
-        .whatsapp-channel-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .stat-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
             text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
-        .whatsapp-channel-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: white;
-            animation: pulse 2s infinite;
-        }
-
-        .whatsapp-channel-container h2 {
-            margin-bottom: 1rem;
+        .stat-value {
             font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
         }
 
-        .whatsapp-channel-container p {
-            max-width: 600px;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
         }
 
-        .whatsapp-channel-btn {
-            display: inline-flex;
-            align-items: center;
-            background: #075E54;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(7, 94, 84, 0.4);
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: var(--card-shadow);
+            border-left: 4px solid var(--green);
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
         }
 
-        .whatsapp-channel-btn:hover {
-            background: #128C7E;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(7, 94, 84, 0.6);
+        .notification.show {
+            transform: translateX(0);
         }
 
-        .whatsapp-channel-btn i {
-            margin-right: 10px;
-            font-size: 1.3rem;
+        .notification.error {
+            border-left-color: #dc3545;
         }
 
-        /* Instagram Section */
-        .instagram-section {
-            background: linear-gradient(135deg, rgba(225, 48, 108, 0.9), rgba(225, 48, 108, 0.8));
-            color: var(--light-text);
-            padding: 2rem 0;
-            backdrop-filter: blur(5px);
-            position: relative;
-            z-index: 5;
-        }
-
-        .instagram-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .instagram-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: white;
-            animation: pulse 2s infinite;
-        }
-
-        .instagram-container h2 {
-            margin-bottom: 1rem;
-            font-size: 2rem;
-        }
-
-        .instagram-container p {
-            max-width: 600px;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-
-        .instagram-btn {
-            display: inline-flex;
-            align-items: center;
-            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(225, 48, 108, 0.4);
-        }
-
-        .instagram-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(225, 48, 108, 0.6);
-        }
-
-        .instagram-btn i {
-            margin-right: 10px;
-            font-size: 1.3rem;
+        .notification.warning {
+            border-left-color: var(--yellow);
         }
 
         /* Footer */
         footer {
-            background: linear-gradient(135deg, rgba(52, 73, 94, 0.9), rgba(44, 62, 80, 0.9));
+            background: linear-gradient(135deg, var(--blue), #1976D2);
             color: var(--light-text);
-            padding: 3rem 0 1.5rem;
-            backdrop-filter: blur(5px);
-            position: relative;
-            z-index: 5;
+            padding: 1.5rem 0;
+            text-align: center;
+            margin-top: 30px;
         }
 
         .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .footer-column h3 {
-            margin-bottom: 1.5rem;
-            font-size: 1.3rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--popular-bg);
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column ul li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-column ul li a {
-            color: #bdc3c7;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-column ul li a:hover {
-            color: var(--light-text);
+        .copyright {
+            font-size: 0.9rem;
         }
 
         .social-links {
             display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
+            gap: 10px;
         }
 
         .social-links a {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             color: var(--light-text);
@@ -953,626 +369,659 @@
         }
 
         .social-links a:hover {
-            background: var(--popular-bg);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #bdc3c7;
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .creator-tag {
-                position: static;
-                margin-top: 10px;
-            }
-
-            nav ul {
-                margin-top: 1rem;
-                justify-content: center;
-            }
-
-            nav ul li {
-                margin: 0 0.7rem;
-            }
-
-            .search-section h2 {
-                font-size: 1.8rem;
-            }
-
-            .section-title {
-                font-size: 1.6rem;
-            }
-
-            .download-frame {
-                width: 95%;
-                height: 280px;
-            }
-
-            .frame-content h4 {
-                font-size: 1.3rem;
-            }
+            background: rgba(255, 255, 255, 0.2);
         }
 
         @media (max-width: 576px) {
-            .logo h1 {
-                font-size: 1.5rem;
-            }
-
-            .search-box {
+            .footer-content {
                 flex-direction: column;
-                border-radius: 10px;
-            }
-
-            .search-box input {
-                border-radius: 10px 10px 0 0;
-            }
-
-            .search-box button {
-                border-radius: 0 0 10px 10px;
-                padding: 12px;
-            }
-
-            .apps-grid,
-            .categories-grid,
-            .popular-list,
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .download-frame {
-                height: 250px;
-            }
-
-            .frame-icon {
-                font-size: 3rem;
-            }
-
-            .frame-content h4 {
-                font-size: 1.2rem;
+                gap: 15px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Enhanced Lightning Background -->
-    <div class="lightning-bg">
-        <div class="lightning"></div>
-        <div class="lightning"></div>
-        <div class="lightning"></div>
-        <div class="thunder"></div>
-        <div class="particles" id="particles"></div>
-    </div>
-
-    <!-- Fixed Download Frame -->
-    <div class="overlay" id="overlay"></div>
-    <div class="download-frame" id="downloadFrame">
-        <div class="frame-header">
-            <h3><i class="fas fa-download"></i> Downloading APK</h3>
-            <button class="close-frame" id="closeFrame">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <div class="frame-content">
-            <i class="fas fa-download frame-icon"></i>
-            <h4 id="frameAppName">Preparing Download</h4>
-            <p>Your download will start automatically...</p>
-            <div class="progress-bar">
-                <div class="progress" id="downloadProgress"></div>
-            </div>
-            <div class="frame-actions">
-                <button class="frame-btn primary" id="directDownload">
-                    <i class="fas fa-bolt"></i> Download Now
-                </button>
-                <button class="frame-btn secondary" id="cancelDownload">
-                    <i class="fas fa-times"></i> Cancel
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Header Section -->
+    <!-- Header -->
     <header>
         <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <i class="fas fa-download"></i>
-                    <h1>APK<span>Downloader</span></h1>
-                </div>
-                <div class="creator-tag">
-                    Created by <span class="creator-name">INNOCENT TECH</span>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
-                        <li><a href="#features"><i class="fas fa-cogs"></i> Features</a></li>
-                        <li><a href="#featured"><i class="fas fa-star"></i> Featured</a></li>
-                        <li><a href="#categories"><i class="fas fa-th-large"></i> Categories</a></li>
-                        <li><a href="#popular"><i class="fas fa-fire"></i> Popular</a></li>
-                    </ul>
-                </nav>
+            <div class="logo">
+                <i class="fab fa-whatsapp"></i>
+                <h1>WhatsApp Ban Manager</h1>
+            </div>
+            <div class="creator-tag">
+                Created by <span class="creator-name">INNOCENT TECH STUDIOS</span>
             </div>
         </div>
     </header>
 
-    <!-- Search Section -->
-    <section class="search-section">
-        <div class="container">
-            <h2>Download Any APK Directly</h2>
-            <p>Search for your favorite Android apps and download them directly in APK format. Safe, fast, and easy!</p>
-            <div class="search-box">
-                <input type="text" id="appSearch" placeholder="Search for an app (e.g., Telegram, WhatsApp, Instagram)">
-                <button id="searchBtn"><i class="fas fa-search"></i> Search</button>
+    <div class="container">
+        <div class="main-content">
+            <div class="input-section">
+                <div class="card">
+                    <h2>Add Numbers to Ban</h2>
+                    <div class="input-group">
+                        <label for="phoneInput">Enter Phone Numbers (one per line or comma separated)</label>
+                        <textarea id="phoneInput" placeholder="e.g. +1234567890, +1987654321"></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label for="banType">Ban Type</label>
+                        <select id="banType">
+                            <option value="temporary">Temporary Ban (30 days)</option>
+                            <option value="permanent">Permanent Ban</option>
+                            <option value="custom">Custom Duration</option>
+                        </select>
+                    </div>
+                    <div class="input-group" id="customDurationGroup" style="display: none;">
+                        <label for="customDays">Custom Ban Duration (days)</label>
+                        <input type="number" id="customDays" min="1" max="365" value="7">
+                    </div>
+                    <div class="btn-group">
+                        <button id="addBtn" class="btn">Add to Ban List</button>
+                        <button id="clearInputBtn" class="btn btn-danger">Clear Input</button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2>Import/Export</h2>
+                    <div class="input-group">
+                        <label for="importText">Import Numbers</label>
+                        <textarea id="importText" placeholder="Paste numbers to import (one per line or comma separated)"></textarea>
+                    </div>
+                    <div class="btn-group">
+                        <button id="importBtn" class="btn btn-blue">Import Numbers</button>
+                        <button id="exportBtn" class="btn btn-yellow">Export Ban List</button>
+                    </div>
+                    <div class="input-group">
+                        <label for="exportFormat">Export Format:</label>
+                        <select id="exportFormat">
+                            <option value="csv">CSV</option>
+                            <option value="txt">Text (one per line)</option>
+                            <option value="json">JSON</option>
+                        </select>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
-
-    <!-- APK Features Section -->
-    <section class="features-section" id="features">
-        <div class="container">
-            <h2 class="section-title">Why Use Our APK Downloader?</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Safe & Secure</h3>
-                    <p>All APK files are scanned for malware and viruses before being made available for download.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-bolt"></i>
-                    <h3>Fast Downloads</h3>
-                    <p>High-speed servers ensure quick downloads without any wait times or speed limits.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-history"></i>
-                    <h3>Version History</h3>
-                    <p>Access previous versions of apps in case you need to downgrade for compatibility.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h3>Device Compatible</h3>
-                    <p>APKs work on all Android devices regardless of manufacturer or Android version.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Apps Section -->
-    <section class="featured-section" id="featured">
-        <div class="container">
-            <h2 class="section-title">Featured Apps</h2>
-            <div class="apps-grid">
-                <div class="app-card">
-                    <div class="app-icon">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
+            
+            <div class="banned-section">
+                <div class="card">
+                    <h2>Banned Numbers</h2>
+                    <div id="bannedList" class="banned-list">
+                        <div class="empty-state">No numbers banned yet</div>
                     </div>
-                    <div class="app-info">
-                        <h3>Telegram</h3>
-                        <p>Fast and secure messaging app</p>
-                        <div class="app-details">
-                            <span class="app-version">v9.2.1</span>
-                            <span class="app-size">45.3 MB</span>
+                    <div class="btn-group">
+                        <button id="clearAllBtn" class="btn btn-danger">Clear All Bans</button>
+                        <button id="refreshBtn" class="btn btn-gold">Refresh List</button>
+                    </div>
+                </div>
+                
+                <div class="stats-section">
+                    <div class="card">
+                        <h2>Ban Statistics</h2>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-value" id="totalBans">0</div>
+                                <div class="stat-label">Total Bans</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value" id="permanentBans">0</div>
+                                <div class="stat-label">Permanent</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value" id="temporaryBans">0</div>
+                                <div class="stat-label">Temporary</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value" id="activeBans">0</div>
+                                <div class="stat-label">Active</div>
+                            </div>
                         </div>
-                        <button class="download-btn" data-app="telegram">Download APK</button>
-                    </div>
-                </div>
-                <div class="app-card">
-                    <div class="app-icon">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-                    </div>
-                    <div class="app-info">
-                        <h3>WhatsApp</h3>
-                        <p>Simple, reliable messaging</p>
-                        <div class="app-details">
-                            <span class="app-version">v2.23.10.76</span>
-                            <span class="app-size">52.1 MB</span>
-                        </div>
-                        <button class="download-btn" data-app="whatsapp">Download APK</button>
-                    </div>
-                </div>
-                <div class="app-card">
-                    <div class="app-icon">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
-                    </div>
-                    <div class="app-info">
-                        <h3>Instagram</h3>
-                        <p>Photo and video sharing app</p>
-                        <div class="app-details">
-                            <span class="app-version">v289.0.0.18.110</span>
-                            <span class="app-size">67.8 MB</span>
-                        </div>
-                        <button class="download-btn" data-app="instagram">Download APK</button>
-                    </div>
-                </div>
-                <div class="app-card">
-                    <div class="app-icon">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" alt="Spotify">
-                    </div>
-                    <div class="app-info">
-                        <h3>Spotify</h3>
-                        <p>Music and podcast streaming</p>
-                        <div class="app-details">
-                            <span class="app-version">v8.8.32.516</span>
-                            <span class="app-size">73.5 MB</span>
-                        </div>
-                        <button class="download-btn" data-app="spotify">Download APK</button>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Categories Section -->
-    <section class="categories-section" id="categories">
-        <div class="container">
-            <h2 class="section-title">App Categories</h2>
-            <div class="categories-grid">
-                <div class="category-card" data-category="games">
-                    <i class="fas fa-gamepad"></i>
-                    <h3>Games</h3>
-                    <p>Action, Adventure, Puzzle & more</p>
-                </div>
-                <div class="category-card" data-category="social">
-                    <i class="fas fa-users"></i>
-                    <h3>Social</h3>
-                    <p>Social media & communication apps</p>
-                </div>
-                <div class="category-card" data-category="entertainment">
-                    <i class="fas fa-film"></i>
-                    <h3>Entertainment</h3>
-                    <p>Movies, TV & streaming apps</p>
-                </div>
-                <div class="category-card" data-category="education">
-                    <i class="fas fa-graduation-cap"></i>
-                    <h3>Education</h3>
-                    <p>Learning & educational apps</p>
-                </div>
-                <div class="category-card" data-category="productivity">
-                    <i class="fas fa-briefcase"></i>
-                    <h3>Productivity</h3>
-                    <p>Tools for work and organization</p>
-                </div>
-                <div class="category-card" data-category="tools">
-                    <i class="fas fa-tools"></i>
-                    <h3>Tools</h3>
-                    <p>Utilities and system apps</p>
-                </div>
+        
+        <div class="card">
+            <h2 style="color: var(--gold); border-bottom-color: var(--gold);">Ban Management Commands</h2>
+            <div class="btn-group">
+                <button id="tempBanAllBtn" class="btn btn-yellow">Temporary Ban All Numbers</button>
+                <button id="permBanAllBtn" class="btn btn-pink">Permanent Ban All Numbers</button>
+                <button id="unbanExpiredBtn" class="btn btn-blue">Unban Expired Temporary Bans</button>
+                <button id="simulateBanBtn" class="btn btn-gold">Simulate Ban Process</button>
             </div>
+            <div id="commandOutput" style="margin-top: 15px; padding: 10px; background: #f8f9fa; border-radius: 5px; min-height: 50px; font-family: monospace;"></div>
         </div>
-    </section>
-
-    <!-- Popular Apps Section -->
-    <section class="popular-section" id="popular">
-        <div class="container">
-            <h2 class="section-title">Most Popular Downloads</h2>
-            <div class="popular-list">
-                <div class="popular-app">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
-                    <div class="popular-app-info">
-                        <h3>Facebook</h3>
-                        <p>Connect with friends and family</p>
-                        <div class="app-details-small">
-                            <span class="app-version">v412.0.0.32.116</span>
-                            <span class="app-size">45.2 MB</span>
-                        </div>
-                    </div>
-                    <button class="download-btn" data-app="facebook">Download</button>
-                </div>
-                <div class="popular-app">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube">
-                    <div class="popular-app-info">
-                        <h3>YouTube</h3>
-                        <p>Watch and share videos</p>
-                        <div class="app-details-small">
-                            <span class="app-version">v18.38.36</span>
-                            <span class="app-size">38.7 MB</span>
-                        </div>
-                    </div>
-                    <button class="download-btn" data-app="youtube">Download</button>
-                </div>
-                <div class="popular-app">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Netflix_logo.svg" alt="Netflix">
-                    <div class="popular-app-info">
-                        <h3>Netflix</h3>
-                        <p>Stream TV shows and movies</p>
-                        <div class="app-details-small">
-                            <span class="app-version">v8.82.0</span>
-                            <span class="app-size">27.3 MB</span>
-                        </div>
-                    </div>
-                    <button class="download-btn" data-app="netflix">Download</button>
-                </div>
-                <div class="popular-app">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg" alt="TikTok">
-                    <div class="popular-app-info">
-                        <h3>TikTok</h3>
-                        <p>Short-form mobile videos</p>
-                        <div class="app-details-small">
-                            <span class="app-version">v30.0.4</span>
-                            <span class="app-size">82.1 MB</span>
-                        </div>
-                    </div>
-                    <button class="download-btn" data-app="tiktok">Download</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- WhatsApp Contact Section -->
-    <section class="whatsapp-section" id="whatsapp">
-        <div class="container">
-            <div class="whatsapp-container">
-                <i class="fab fa-whatsapp whatsapp-icon"></i>
-                <h2>Contact Us on WhatsApp</h2>
-                <p>Have questions or need help? Reach out to us directly on WhatsApp. We're here to assist you with any inquiries or support you may need.</p>
-                <a href="https://wa.me/0751833703" class="whatsapp-btn" target="_blank">
-                    <i class="fab fa-whatsapp"></i> Chat on WhatsApp
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- WhatsApp Channel Section -->
-    <section class="whatsapp-channel-section" id="whatsapp-channel">
-        <div class="container">
-            <div class="whatsapp-channel-container">
-                <i class="fab fa-whatsapp whatsapp-channel-icon"></i>
-                <h2>Join Our WhatsApp Channel</h2>
-                <p>Stay updated with the latest app releases, exclusive content, and important announcements. We'd be delighted if you could join our WhatsApp Channel to receive regular updates!</p>
-                <a href="https://whatsapp.com/channel/0029VbBhmxkJuyACXj7A8j01" class="whatsapp-channel-btn" target="_blank">
-                    <i class="fab fa-whatsapp"></i> Join WhatsApp Channel
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Instagram Contact Section -->
-    <section class="instagram-section" id="instagram">
-        <div class="container">
-            <div class="instagram-container">
-                <i class="fab fa-instagram instagram-icon"></i>
-                <h2>Follow Us on Instagram</h2>
-                <p>Stay updated with the latest app releases, tech tips, and behind-the-scenes content. Follow us on Instagram for daily updates!</p>
-                <a href="https://www.instagram.com/sam_ster9?igsh=MTFuNHB0eGFzbmVjNg==" class="instagram-btn" target="_blank">
-                    <i class="fab fa-instagram"></i> Follow on Instagram
-                </a>
-            </div>
-        </div>
-    </section>
-
+    </div>
+    
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-column">
-                    <h3>APK Downloader</h3>
-                    <p>Your trusted source for Android APK files. Download safely and directly.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.instagram.com/sam_ster9?igsh=MTFuNHB0eGFzbmVjNg==" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                    </div>
+                <div class="copyright">
+                    <p>WhatsApp Ban Manager &copy; 2023 | Created by <span class="creator-name">INNOCENT TECH STUDIOS</span></p>
                 </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#featured">Featured Apps</a></li>
-                        <li><a href="#categories">Categories</a></li>
-                        <li><a href="#popular">Popular Apps</a></li>
-                        <li><a href="#whatsapp">WhatsApp</a></li>
-                        <li><a href="#whatsapp-channel">WhatsApp Channel</a></li>
-                        <li><a href="#instagram">Instagram</a></li>
-                    </ul>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
                 </div>
-                <div class="footer-column">
-                    <h3>Support</h3>
-                    <ul>
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#whatsapp">Contact Us</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Info</h3>
-                    <ul>
-                        <li><i class="fab fa-whatsapp"></i> WhatsApp: +0751833703</li>
-                        <li><i class="fab fa-whatsapp"></i> WhatsApp Channel: APK Updates</li>
-                        <li><i class="fab fa-instagram"></i> Instagram: @sam_ster9</li>
-                        <li><i class="fas fa-envelope"></i> Email: info@apkdownloader.com</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Location: Online Service</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 APK Downloader. Created by <span class="creator-name">INNOCENT TECH</span>. All rights reserved.</p>
             </div>
         </div>
     </footer>
-
+    
+    <div id="notification" class="notification"></div>
+    
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const searchBtn = document.getElementById('searchBtn');
-            const appSearch = document.getElementById('appSearch');
-            const downloadButtons = document.querySelectorAll('.download-btn');
-            const categoryCards = document.querySelectorAll('.category-card');
-            const downloadFrame = document.getElementById('downloadFrame');
-            const overlay = document.getElementById('overlay');
-            const closeFrame = document.getElementById('closeFrame');
-            const cancelDownload = document.getElementById('cancelDownload');
-            const directDownload = document.getElementById('directDownload');
-            const frameAppName = document.getElementById('frameAppName');
-            const downloadProgress = document.getElementById('downloadProgress');
-            
-            let currentDownload = null;
-            
-            // Create floating particles
-            createParticles();
-            
-            // Search functionality
-            searchBtn.addEventListener('click', function() {
-                const query = appSearch.value.trim();
-                if (query) {
-                    showDownloadFrame(query);
-                } else {
-                    alert('Please enter an app name to search for.');
-                }
-            });
-            
-            appSearch.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    searchBtn.click();
-                }
-            });
-            
-            // Download button functionality
-            downloadButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const appName = this.getAttribute('data-app');
-                    showDownloadFrame(appName);
-                });
-            });
-            
-            // Category card functionality
-            categoryCards.forEach(card => {
-                card.addEventListener('click', function() {
-                    const category = this.getAttribute('data-category');
-                    appSearch.value = category;
-                    appSearch.focus();
-                    alert(`Searching for ${category} apps. Type a specific app name or press Search to browse the category.`);
-                });
-            });
-            
-            // Frame controls
-            closeFrame.addEventListener('click', closeDownloadFrame);
-            cancelDownload.addEventListener('click', closeDownloadFrame);
-            overlay.addEventListener('click', closeDownloadFrame);
-            
-            directDownload.addEventListener('click', function() {
-                if (currentDownload) {
-                    startDownload(currentDownload);
-                }
-            });
-            
-            // Show download frame
-            function showDownloadFrame(appName) {
-                currentDownload = appName;
-                frameAppName.textContent = `Downloading ${appName.charAt(0).toUpperCase() + appName.slice(1)}`;
-                downloadProgress.style.width = '0%';
-                downloadFrame.classList.add('active');
-                overlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                
-                // Simulate progress
-                simulateProgress();
-                
-                // Auto start download after 2 seconds
-                setTimeout(() => {
-                    startDownload(appName);
-                }, 2000);
+        // DOM Elements
+        const phoneInput = document.getElementById('phoneInput');
+        const banType = document.getElementById('banType');
+        const customDurationGroup = document.getElementById('customDurationGroup');
+        const customDays = document.getElementById('customDays');
+        const addBtn = document.getElementById('addBtn');
+        const clearInputBtn = document.getElementById('clearInputBtn');
+        const bannedList = document.getElementById('bannedList');
+        const clearAllBtn = document.getElementById('clearAllBtn');
+        const refreshBtn = document.getElementById('refreshBtn');
+        const importText = document.getElementById('importText');
+        const importBtn = document.getElementById('importBtn');
+        const exportBtn = document.getElementById('exportBtn');
+        const exportFormat = document.getElementById('exportFormat');
+        const notification = document.getElementById('notification');
+        const totalBans = document.getElementById('totalBans');
+        const permanentBans = document.getElementById('permanentBans');
+        const temporaryBans = document.getElementById('temporaryBans');
+        const activeBans = document.getElementById('activeBans');
+        const tempBanAllBtn = document.getElementById('tempBanAllBtn');
+        const permBanAllBtn = document.getElementById('permBanAllBtn');
+        const unbanExpiredBtn = document.getElementById('unbanExpiredBtn');
+        const simulateBanBtn = document.getElementById('simulateBanBtn');
+        const commandOutput = document.getElementById('commandOutput');
+
+        // Initialize banned numbers from localStorage or empty array
+        let bannedNumbers = JSON.parse(localStorage.getItem('whatsappBannedNumbers')) || [];
+        
+        // Show/hide custom duration based on ban type
+        banType.addEventListener('change', function() {
+            if (this.value === 'custom') {
+                customDurationGroup.style.display = 'block';
+            } else {
+                customDurationGroup.style.display = 'none';
             }
-            
-            // Close download frame
-            function closeDownloadFrame() {
-                downloadFrame.classList.remove('active');
-                overlay.classList.remove('active');
-                document.body.style.overflow = 'auto';
-                currentDownload = null;
-            }
-            
-            // Simulate download progress
-            function simulateProgress() {
-                let progress = 0;
-                const interval = setInterval(() => {
-                    if (progress < 90) {
-                        progress += Math.random() * 15;
-                        if (progress > 90) progress = 90;
-                        downloadProgress.style.width = progress + '%';
-                    } else {
-                        clearInterval(interval);
-                    }
-                }, 200);
-            }
-            
-            // Start actual download
-            function startDownload(appName) {
-                downloadProgress.style.width = '100%';
-                
-                // Create a hidden iframe to trigger download
-                const iframe = document.createElement('iframe');
-                iframe.style.display = 'none';
-                iframe.src = `https://apk-downloader.bjcoderx.workers.dev/?query=${encodeURIComponent(appName)}`;
-                document.body.appendChild(iframe);
-                
-                // Close frame after download
-                setTimeout(() => {
-                    closeDownloadFrame();
-                    alert(`Download started for ${appName}! If download doesn't start, check your browser's download settings.`);
-                    
-                    // Remove iframe
-                    document.body.removeChild(iframe);
-                }, 1500);
-            }
-            
-            // Create floating particles
-            function createParticles() {
-                const particlesContainer = document.getElementById('particles');
-                const particleCount = 30;
-                
-                for (let i = 0; i < particleCount; i++) {
-                    const particle = document.createElement('div');
-                    particle.classList.add('particle');
-                    
-                    // Random properties
-                    const size = Math.random() * 5 + 2;
-                    const left = Math.random() * 100;
-                    const animationDuration = Math.random() * 20 + 10;
-                    const animationDelay = Math.random() * 10;
-                    
-                    particle.style.width = `${size}px`;
-                    particle.style.height = `${size}px`;
-                    particle.style.left = `${left}%`;
-                    particle.style.animationDuration = `${animationDuration}s`;
-                    particle.style.animationDelay = `${animationDelay}s`;
-                    
-                    particlesContainer.appendChild(particle);
-                }
-            }
-            
-            // Add animation to cards on scroll
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-            
-            // Observe all cards for animation
-            document.querySelectorAll('.app-card, .category-card, .popular-app, .feature-card').forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                observer.observe(card);
-            });
         });
+
+        // Display initial banned numbers
+        updateBannedList();
+        updateStats();
+
+        // Event Listeners
+        addBtn.addEventListener('click', addNumbers);
+        clearInputBtn.addEventListener('click', () => {
+            phoneInput.value = '';
+            phoneInput.focus();
+        });
+        clearAllBtn.addEventListener('click', clearAllNumbers);
+        refreshBtn.addEventListener('click', refreshList);
+        importBtn.addEventListener('click', importNumbers);
+        exportBtn.addEventListener('click', exportNumbers);
+        tempBanAllBtn.addEventListener('click', tempBanAll);
+        permBanAllBtn.addEventListener('click', permBanAll);
+        unbanExpiredBtn.addEventListener('click', unbanExpired);
+        simulateBanBtn.addEventListener('click', simulateBanProcess);
+
+        // Functions
+        function addNumbers() {
+            const input = phoneInput.value.trim();
+            if (!input) {
+                showNotification('Please enter at least one phone number', 'error');
+                return;
+            }
+            
+            // Parse numbers (support comma separated and new lines)
+            const numbers = input.split(/[\n,]+/).map(num => num.trim()).filter(num => num);
+            
+            let addedCount = 0;
+            let duplicatesCount = 0;
+            let invalidCount = 0;
+            
+            // Determine ban duration
+            let banDuration = 0;
+            let banTypeValue = banType.value;
+            
+            if (banTypeValue === 'temporary') {
+                banDuration = 30; // 30 days
+            } else if (banTypeValue === 'permanent') {
+                banDuration = -1; // -1 indicates permanent
+            } else if (banTypeValue === 'custom') {
+                banDuration = parseInt(customDays.value) || 7;
+            }
+            
+            numbers.forEach(number => {
+                // Validate and format phone number
+                const formattedNumber = formatPhoneNumber(number);
+                
+                if (!formattedNumber) {
+                    invalidCount++;
+                    return;
+                }
+                
+                // Check if number is already in the list
+                const existingIndex = bannedNumbers.findIndex(item => item.number === formattedNumber);
+                if (existingIndex !== -1) {
+                    // Update existing ban
+                    bannedNumbers[existingIndex].type = banTypeValue;
+                    bannedNumbers[existingIndex].duration = banDuration;
+                    bannedNumbers[existingIndex].bannedAt = new Date().toISOString();
+                    duplicatesCount++;
+                } else {
+                    // Add to banned list
+                    bannedNumbers.push({
+                        number: formattedNumber,
+                        type: banTypeValue,
+                        duration: banDuration,
+                        bannedAt: new Date().toISOString()
+                    });
+                    addedCount++;
+                }
+            });
+            
+            // Save to localStorage
+            localStorage.setItem('whatsappBannedNumbers', JSON.stringify(bannedNumbers));
+            
+            // Update UI
+            updateBannedList();
+            updateStats();
+            
+            // Show notification
+            let message = `${addedCount} number(s) added to ban list.`;
+            if (duplicatesCount > 0) message += ` ${duplicatesCount} existing number(s) updated.`;
+            if (invalidCount > 0) message += ` ${invalidCount} invalid number(s) skipped.`;
+            
+            showNotification(message);
+            
+            // Clear input if all numbers were processed
+            if (addedCount + duplicatesCount === numbers.length) {
+                phoneInput.value = '';
+            }
+        }
+        
+        function formatPhoneNumber(number) {
+            // Remove all non-digit characters except +
+            let cleaned = number.replace(/[^\d+]/g, '');
+            
+            // Ensure it starts with +
+            if (!cleaned.startsWith('+')) {
+                // If no country code, consider it invalid
+                return null;
+            }
+            
+            // Basic validation - at least 8 digits after +
+            if (cleaned.length < 9) {
+                return null;
+            }
+            
+            return cleaned;
+        }
+        
+        function updateBannedList() {
+            // Update list
+            if (bannedNumbers.length === 0) {
+                bannedList.innerHTML = '<div class="empty-state">No numbers banned yet</div>';
+                return;
+            }
+            
+            bannedList.innerHTML = '';
+            bannedNumbers.forEach((item, index) => {
+                const isExpired = item.type === 'temporary' && isBanExpired(item);
+                
+                const itemElement = document.createElement('div');
+                itemElement.className = 'banned-item';
+                if (isExpired) {
+                    itemElement.style.opacity = '0.6';
+                }
+                
+                itemElement.innerHTML = `
+                    <div>
+                        <span class="banned-number">${item.number}</span>
+                        <span class="ban-type ${item.type === 'permanent' ? 'ban-permanent' : 'ban-temporary'}">
+                            ${item.type === 'permanent' ? 'PERMANENT' : `TEMPORARY (${getDaysLeft(item)} days left)`}
+                        </span>
+                        ${isExpired ? '<span style="color: #dc3545; font-size: 0.8rem;">(EXPIRED)</span>' : ''}
+                    </div>
+                    <div class="banned-actions">
+                        <button class="action-btn" onclick="removeNumber(${index})">Remove</button>
+                        <button class="action-btn" onclick="toggleBanType(${index})">Toggle Type</button>
+                    </div>
+                `;
+                bannedList.appendChild(itemElement);
+            });
+        }
+        
+        function updateStats() {
+            const total = bannedNumbers.length;
+            const permanent = bannedNumbers.filter(item => item.type === 'permanent').length;
+            const temporary = bannedNumbers.filter(item => item.type === 'temporary').length;
+            const active = bannedNumbers.filter(item => !isBanExpired(item)).length;
+            
+            totalBans.textContent = total;
+            permanentBans.textContent = permanent;
+            temporaryBans.textContent = temporary;
+            activeBans.textContent = active;
+        }
+        
+        function isBanExpired(banItem) {
+            if (banItem.type === 'permanent') return false;
+            
+            const bannedAt = new Date(banItem.bannedAt);
+            const expiresAt = new Date(bannedAt.getTime() + (banItem.duration * 24 * 60 * 60 * 1000));
+            return new Date() > expiresAt;
+        }
+        
+        function getDaysLeft(banItem) {
+            if (banItem.type === 'permanent') return '∞';
+            
+            const bannedAt = new Date(banItem.bannedAt);
+            const expiresAt = new Date(bannedAt.getTime() + (banItem.duration * 24 * 60 * 60 * 1000));
+            const now = new Date();
+            const diffTime = expiresAt - now;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            
+            return diffDays > 0 ? diffDays : 0;
+        }
+        
+        function removeNumber(index) {
+            bannedNumbers.splice(index, 1);
+            localStorage.setItem('whatsappBannedNumbers', JSON.stringify(bannedNumbers));
+            updateBannedList();
+            updateStats();
+            showNotification('Number removed from ban list');
+        }
+        
+        function toggleBanType(index) {
+            if (bannedNumbers[index].type === 'permanent') {
+                bannedNumbers[index].type = 'temporary';
+                bannedNumbers[index].duration = 30;
+            } else {
+                bannedNumbers[index].type = 'permanent';
+                bannedNumbers[index].duration = -1;
+            }
+            
+            bannedNumbers[index].bannedAt = new Date().toISOString();
+            localStorage.setItem('whatsappBannedNumbers', JSON.stringify(bannedNumbers));
+            updateBannedList();
+            updateStats();
+            showNotification('Ban type updated');
+        }
+        
+        function clearAllNumbers() {
+            if (bannedNumbers.length === 0) {
+                showNotification('Ban list is already empty', 'error');
+                return;
+            }
+            
+            if (confirm('Are you sure you want to clear all banned numbers? This action cannot be undone.')) {
+                bannedNumbers = [];
+                localStorage.setItem('whatsappBannedNumbers', JSON.stringify(bannedNumbers));
+                updateBannedList();
+                updateStats();
+                showNotification('All numbers removed from ban list');
+            }
+        }
+        
+        function refreshList() {
+            updateBannedList();
+            updateStats();
+            showNotification('Ban list refreshed');
+        }
+        
+        function importNumbers() {
+            const input = importText.value.trim();
+            if (!input) {
+                showNotification('Please enter numbers to import', 'error');
+                return;
+            }
+            
+            // Parse numbers (support comma separated and new lines)
+            const numbers = input.split(/[\n,]+/).map(num => num.trim()).filter(num => num);
+            
+            let addedCount = 0;
+            let duplicatesCount = 0;
+            let invalidCount = 0;
+            
+            numbers.forEach(number => {
+                // Validate and format phone number
+                const formattedNumber = formatPhoneNumber(number);
+                
+                if (!formattedNumber) {
+                    invalidCount++;
+                    return;
+                }
+                
+                // Check if number is already in the list
+                if (bannedNumbers.find(item => item.number === formattedNumber)) {
+                    duplicatesCount++;
+                    return;
+                }
+                
+                // Add to banned list with default temporary ban
+                bannedNumbers.push({
+                    number: formattedNumber,
+                    type: 'temporary',
+                    duration: 30,
+                    bannedAt: new Date().toISOString()
+                });
+                addedCount++;
+            });
+            
+            // Save to localStorage
+            localStorage.setItem('whatsappBannedNumbers', JSON.stringify(bannedNumbers));
+            
+            // Update UI
+            updateBannedList();
+            updateStats();
+            
+            // Show notification
+            let message = `${addedCount} number(s) imported to ban list.`;
+            if (duplicatesCount > 0) message += ` ${duplicatesCount} duplicate(s) skipped.`;
+            if (invalidCount > 0) message += ` ${invalidCount} invalid number(s) skipped.`;
+            
+            showNotification(message);
+            
+            // Clear import textarea
+            importText.value = '';
+        }
+        
+        function exportNumbers() {
+            if (bannedNumbers.length === 0) {
+                showNotification('No numbers to export', 'error');
+                return;
+            }
+            
+            const format = exportFormat.value;
+            let content = '';
+            let filename = '';
+            let mimeType = '';
+            
+            switch (format) {
+                case 'csv':
+                    content = 'Phone Number,Ban Type,Duration (days),Banned At\n';
+                    bannedNumbers.forEach(item => {
+                        content += `${item.number},${item.type},${item.duration},${item.bannedAt}\n`;
+                    });
+                    filename = 'whatsapp_banned_numbers.csv';
+                    mimeType = 'text/csv';
+                    break;
+                case 'txt':
+                    bannedNumbers.forEach(item => {
+                        content += `${item.number} - ${item.type} (${item.duration} days) - ${item.bannedAt}\n`;
+                    });
+                    filename = 'whatsapp_banned_numbers.txt';
+                    mimeType = 'text/plain';
+                    break;
+                case 'json':
+                    content = JSON.stringify(bannedNumbers, null, 2);
+                    filename = 'whatsapp_banned_numbers.json';
+                    mimeType = 'application/json';
+                    break;
+            }
+            
+            // Create download link
+            const blob = new Blob([content], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            showNotification(`Ban list exported as ${format.toUpperCase()}`);
+        }
+        
+        function tempBanAll() {
+            if (bannedNumbers.length === 0) {
+                showNotification('No numbers to ban', 'error');
+                return;
+            }
+            
+            let updatedCount = 0;
+            bannedNumbers.forEach(item => {
+                if (item.type !== 'temporary') {
+                    item.type = 'temporary';
+                    item.duration = 30;
+                    item.bannedAt = new Date().toISOString();
+                    updatedCount++;
+                }
+            });
+            
+            if (updatedCount > 0) {
+                localStorage.setItem('whatsappBannedNumbers', JSON.stringify(bannedNumbers));
+                updateBannedList();
+                updateStats();
+                showNotification(`${updatedCount} number(s) changed to temporary ban`);
+            } else {
+                showNotification('All numbers are already temporarily banned', 'warning');
+            }
+        }
+        
+        function permBanAll() {
+            if (bannedNumbers.length === 0) {
+                showNotification('No numbers to ban', 'error');
+                return;
+            }
+            
+            let updatedCount = 0;
+            bannedNumbers.forEach(item => {
+                if (item.type !== 'permanent') {
+                    item.type = 'permanent';
+                    item.duration = -1;
+                    item.bannedAt = new Date().toISOString();
+                    updatedCount++;
+                }
+            });
+            
+            if (updatedCount > 0) {
+                localStorage.setItem('whatsappBannedNumbers', JSON.stringify(bannedNumbers));
+                updateBannedList();
+                updateStats();
+                showNotification(`${updatedCount} number(s) changed to permanent ban`);
+            } else {
+                showNotification('All numbers are already permanently banned', 'warning');
+            }
+        }
+        
+        function unbanExpired() {
+            const expiredBans = bannedNumbers.filter(item => isBanExpired(item));
+            
+            if (expiredBans.length === 0) {
+                showNotification('No expired temporary bans found', 'warning');
+                return;
+            }
+            
+            // Remove expired bans
+            bannedNumbers = bannedNumbers.filter(item => !isBanExpired(item));
+            localStorage.setItem('whatsappBannedNumbers', JSON.stringify(bannedNumbers));
+            updateBannedList();
+            updateStats();
+            showNotification(`${expiredBans.length} expired temporary ban(s) removed`);
+        }
+        
+        function simulateBanProcess() {
+            commandOutput.innerHTML = '';
+            addCommandOutput('Starting WhatsApp ban simulation...');
+            
+            if (bannedNumbers.length === 0) {
+                addCommandOutput('ERROR: No numbers in ban list to simulate');
+                return;
+            }
+            
+            // Simulate banning process
+            setTimeout(() => {
+                addCommandOutput('Connecting to WhatsApp servers...');
+                
+                setTimeout(() => {
+                    addCommandOutput('Authenticating with WhatsApp API...');
+                    
+                    setTimeout(() => {
+                        addCommandOutput('Processing ban requests...');
+                        
+                        setTimeout(() => {
+                            let successCount = 0;
+                            let failCount = 0;
+                            
+                            bannedNumbers.forEach((item, index) => {
+                                setTimeout(() => {
+                                    const success = Math.random() > 0.2; // 80% success rate
+                                    
+                                    if (success) {
+                                        addCommandOutput(`✓ SUCCESS: Number ${item.number} banned (${item.type})`);
+                                        successCount++;
+                                    } else {
+                                        addCommandOutput(`✗ FAILED: Could not ban ${item.number}`);
+                                        failCount++;
+                                    }
+                                    
+                                    // Show final results
+                                    if (index === bannedNumbers.length - 1) {
+                                        setTimeout(() => {
+                                            addCommandOutput(`\nBan simulation completed:`);
+                                            addCommandOutput(`Successful bans: ${successCount}`);
+                                            addCommandOutput(`Failed bans: ${failCount}`);
+                                            addCommandOutput(`Success rate: ${Math.round((successCount / bannedNumbers.length) * 100)}%`);
+                                        }, 500);
+                                    }
+                                }, index * 300);
+                            });
+                        }, 1000);
+                    }, 1000);
+                }, 1000);
+            }, 500);
+        }
+        
+        function addCommandOutput(text) {
+            const p = document.createElement('p');
+            p.textContent = text;
+            p.style.margin = '5px 0';
+            commandOutput.appendChild(p);
+            commandOutput.scrollTop = commandOutput.scrollHeight;
+        }
+        
+        function showNotification(message, type = 'success') {
+            notification.textContent = message;
+            notification.className = 'notification';
+            
+            if (type === 'error') {
+                notification.classList.add('error');
+            } else if (type === 'warning') {
+                notification.classList.add('warning');
+            }
+            
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
     </script>
 </body>
 </html>
